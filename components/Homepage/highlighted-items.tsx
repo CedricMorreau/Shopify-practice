@@ -1,5 +1,3 @@
 export default function HighlightedItems() {
-  return (
-    <div>HighlightedItems</div>
-  )
+  return <div>HighlightedItems</div>;
 }

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
 import Search, { SearchMobile } from './search';
-import Logo from '@/components/resources/Logo';
+import Logo from '@/components/resources/logo';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import OpenUser from 'components/profile/open-user';
 
