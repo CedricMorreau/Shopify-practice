@@ -1,7 +1,8 @@
-import { Carousel } from 'components/carousel';
 import { ThreeItemGrid } from 'components/grid/three-items';
 import Footer from 'components/layout/footer';
 import { Suspense } from 'react';
+import HeroSection from 'components/Homepage/hero-section';
+import HighlightedItems from '@/components/Homepage/highlighted-items';
 
 export const runtime = 'edge';
 
@@ -17,7 +18,12 @@ export default async function HomePage() {
     <>
       <ThreeItemGrid />
       <Suspense>
-        <Carousel />
+        <Suspense>
+          <HeroSection />
+        </Suspense>
+        <Suspense>
+          <HighlightedItems />
+        </Suspense>
         <Suspense>
           <Footer />
         </Suspense>

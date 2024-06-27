@@ -3,18 +3,16 @@
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Fragment, Suspense, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import { Bars3Icon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Menu } from 'lib/shopify/types';
-import Search, { SearchSkeleton } from './search';
-import Jordan from 'components/resources/Jordan';
-import Converse from 'components/resources/Converse';
-import Cart from 'components/cart';
+import Jordan from '@/components/resources/Jordan';
+import Converse from '@/components/resources/Converse';
 import OpenCart from 'components/cart/open-cart';
-import OrderIcon from 'components/resources/OrderIcon';
-import FindAstore from 'components/resources/FindAstore';
-import HelpIcon from 'components/resources/HelpIcon';
+import OrderIcon from '@/components/resources/order-icon';
+import FindAstore from '@/components/resources/find-a-store';
+import HelpIcon from '@/components/resources/help-icon';
 
 export default function MobileMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname();
@@ -69,7 +67,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[100%]"
           >
-            <Dialog.Panel className="fixed bottom-0  right-0 top-0 flex h-full w-10/12 flex-col bg-white pb-6 dark:bg-black">
+            <Dialog.Panel className="fixed bottom-0  right-0 top-0 flex h-full w-10/12 flex-col bg-white pb-6 ">
               <div className="overflow-y-scroll p-4">
                 <div className="flex w-full justify-end">
                   <button
@@ -85,7 +83,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   <ul className="flex w-full flex-col px-3">
                     {menu.map((item: Menu) => (
                       <li
-                        className="py-2 text-2xl text-black transition-colors hover:text-neutral-500 dark:text-white"
+                        className="py-2 text-2xl text-black transition-colors hover:text-neutral-500"
                         key={item.title}
                       >
                         <Link

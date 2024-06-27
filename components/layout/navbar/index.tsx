@@ -1,16 +1,14 @@
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
-import LogoSquare from 'components/logo-square';
 import { getMenu } from 'lib/shopify';
 import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
-import Search, { SearchSkeleton } from './search';
-import Logo from 'components/resources/Logo';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import Search, { SearchMobile } from './search';
+import Logo from '@/components/resources/Logo';
+import { HeartIcon } from '@heroicons/react/24/outline';
 import OpenUser from 'components/profile/open-user';
-const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
   const menu = await getMenu('main-menu');
@@ -29,7 +27,7 @@ export default async function Navbar() {
               <li key={item.title}>
                 <Link
                   href={item.path}
-                  className="text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300"
+                  className="text-neutral-500 underline-offset-4 hover:text-black hover:underline "
                 >
                   {item.title}
                 </Link>
@@ -39,18 +37,24 @@ export default async function Navbar() {
         ) : null}
 
         <div className="flex items-center gap-5">
-          <div className="w-6">
-            <MagnifyingGlassIcon />
+          <Search />
+          <div className="md:hidden">
+            <SearchMobile />
+          </div>
+          <div className="hidden w-6 md:block">
+            <Suspense>
+              <HeartIcon />
+            </Suspense>
           </div>
           <div className="w-6">
             <Suspense fallback={<OpenCart />}>
               <Cart />
             </Suspense>
           </div>
-          <div className="w-6">
+          <div className="w-6 md:hidden">
             <OpenUser />
           </div>
-          <div className="w-6">
+          <div className="w-6 md:hidden">
             <Suspense fallback={null}>
               <MobileMenu menu={menu} />
             </Suspense>

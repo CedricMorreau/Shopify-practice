@@ -302,7 +302,7 @@ export async function getCollectionProducts({
   });
 
   if (!res.body.data.collection) {
-    console.log(`No collection found for \`${collection}\``);
+    // console.log(`No collection found for \`${collection}\``);
     return [];
   }
 
@@ -447,4 +447,31 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   }
 
   return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });
+}
+
+export async function fetchContentAPI(query = '', { variables }: Record<string, any> = {}) {
+  const headers = { 'Content-Type': 'application/json' };
+
+  const res = await fetch(endpoint, {
+    headers: {
+      'X-Shopify-Storefront-Access-Token': key,
+      ...headers
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      query,
+      variables
+    }),
+    next: {
+      revalidate: 60
+    }
+  });
+
+  const json = await res.json();
+
+  if (json.errors) {
+    console.error(json.errors);
+    throw new Error('Failed to fetch API');
+  }
+  return json.data;
 }
