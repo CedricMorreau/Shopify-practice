@@ -6,10 +6,10 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 
 import { Bars3Icon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Menu } from 'lib/shopify/types';
+import { Menu } from '@/lib/shopify/types';
 import Jordan from '@/components/resources/jordan';
 import Converse from '@/components/resources/converse';
-import OpenCart from 'components/cart/open-cart';
+import OpenCart from '@/components/cart/open-cart';
 import OrderIcon from '@/components/resources/order-icon';
 import FindAstore from '@/components/resources/find-a-store';
 import HelpIcon from '@/components/resources/help-icon';
