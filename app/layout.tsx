@@ -40,8 +40,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang="en" className={oswald.className}>
       <body className="bg-white text-black">
-        <Navbar />
         <Suspense>
+          <Navbar />
           <main>{children}</main>
         </Suspense>
       </body>
